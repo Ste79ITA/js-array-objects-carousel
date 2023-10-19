@@ -30,3 +30,83 @@ const images = [
 const carouselDOMElement = document.querySelector('.images');
 
 const thumbnailsDOMElement = document.querySelector('.thumbnails');
+
+// CICLO FOR PER POPOLARE GLI ELEMENTI CON L' ARRAY'
+images.forEach((image) => {
+  carouselDOMElement.innerHTML += `
+  <div class="image--container">
+    <div class="text--container">
+        <h1 class="image--title">${image.title}</h1>
+        <p class="image-text">${image.text}</p>
+    </div>
+  <img class="image" src="${image.image}" />
+</div>
+  `;
+
+  thumbnailsDOMElement.innerHTML += `
+  <div class="thumb--container">
+    
+    <img class="thumb" src="${image.image}" />
+</div>`;
+});
+
+// DICHIARAZIONE ELEMENTI DOM
+const forwardBtnDOMElement = document.querySelector('.forward');
+const backwardBtnDOMElement = document.querySelector('.backward');
+const slides = document.querySelectorAll('.image--container');
+const thumbs = document.querySelectorAll('.thumb');
+let currentIndex;
+let currentSlide;
+let currentThumb;
+
+forwardBtnDOMElement.addEventListener('click', function () {
+  let exist = false;
+  slides.forEach((element) => {
+    if (element.classList.contains('display')) {
+      exist = true;
+    }
+  });
+  if (!exist) {
+    currentIndex = 0;
+    currentSlide = slides[currentIndex];
+    currentThumb = thumbs[currentIndex];
+    currentSlide.classList.add('display');
+    currentThumb.classList.add('display');
+  } else {
+    slides[currentIndex].classList.remove('display');
+    thumbs[currentIndex].classList.remove('display');
+    if (currentIndex === slides.length - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex++;
+    }
+    slides[currentIndex].classList.add('display');
+    thumbs[currentIndex].classList.add('display');
+  }
+});
+
+backwardBtnDOMElement.addEventListener('click', function () {
+  let exist = false;
+  slides.forEach((element) => {
+    if (element.classList.contains('display')) {
+      exist = true;
+    }
+  });
+  if (!exist) {
+    currentIndex = slides.length - 1;
+    currentSlide = slides[currentIndex];
+    currentThumb = thumbs[currentIndex];
+    currentSlide.classList.add('display');
+    currentThumb.classList.add('display');
+  } else {
+    slides[currentIndex].classList.remove('display');
+    thumbs[currentIndex].classList.remove('display');
+    if (currentIndex === 0) {
+      currentIndex = slides.length - 1;
+    } else {
+      currentIndex--;
+    }
+    slides[currentIndex].classList.add('display');
+    thumbs[currentIndex].classList.add('display');
+  }
+});

@@ -43,15 +43,17 @@ i {
   position: absolute;
   top: 2%;
   left: 42%;
+  z-index: 1;
 }
 .forward {
   position: absolute;
   bottom: 2%;
   left: 42%;
+  z-index: 1;
 }
 
 .carousel .image {
-  display: none;
+  display: block;
   aspect-ratio: 16/10;
   object-fit: cover;
 }
@@ -81,4 +83,18 @@ i {
 .thumb {
   width: 167px;
   height: 104;
+}
+
+.image--container {
+  position: relative;
+  display: none;
+}
+
+.text--container {
+  position: absolute;
+  bottom: 24px;
+  left: 111px;
+  color: white;
+  text-align: end;
+  width: 700px;
 }
