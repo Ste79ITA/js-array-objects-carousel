@@ -56,10 +56,8 @@ const backwardBtnDOMElement = document.querySelector('.backward');
 const slides = document.querySelectorAll('.image--container');
 const thumbs = document.querySelectorAll('.thumb');
 let currentIndex;
-let currentSlide;
-let currentThumb;
 
-forwardBtnDOMElement.addEventListener('click', function () {
+function btnForward() {
   let exist = false;
   slides.forEach((element) => {
     if (element.classList.contains('display')) {
@@ -68,10 +66,9 @@ forwardBtnDOMElement.addEventListener('click', function () {
   });
   if (!exist) {
     currentIndex = 0;
-    currentSlide = slides[currentIndex];
-    currentThumb = thumbs[currentIndex];
-    currentSlide.classList.add('display');
-    currentThumb.classList.add('display');
+
+    slides[currentIndex].classList.add('display');
+    thumbs[currentIndex].classList.add('display');
   } else {
     slides[currentIndex].classList.remove('display');
     thumbs[currentIndex].classList.remove('display');
@@ -83,9 +80,9 @@ forwardBtnDOMElement.addEventListener('click', function () {
     slides[currentIndex].classList.add('display');
     thumbs[currentIndex].classList.add('display');
   }
-});
+}
 
-backwardBtnDOMElement.addEventListener('click', function () {
+function btnBackward() {
   let exist = false;
   slides.forEach((element) => {
     if (element.classList.contains('display')) {
@@ -94,10 +91,8 @@ backwardBtnDOMElement.addEventListener('click', function () {
   });
   if (!exist) {
     currentIndex = slides.length - 1;
-    currentSlide = slides[currentIndex];
-    currentThumb = thumbs[currentIndex];
-    currentSlide.classList.add('display');
-    currentThumb.classList.add('display');
+    slides[currentIndex].classList.add('display');
+    slides[currentIndex].classList.add('display');
   } else {
     slides[currentIndex].classList.remove('display');
     thumbs[currentIndex].classList.remove('display');
@@ -109,4 +104,24 @@ backwardBtnDOMElement.addEventListener('click', function () {
     slides[currentIndex].classList.add('display');
     thumbs[currentIndex].classList.add('display');
   }
-});
+}
+
+forwardBtnDOMElement.addEventListener('click', btnForward);
+
+backwardBtnDOMElement.addEventListener('click', btnBackward);
+
+// BONUS 2 - 3
+
+const startBtnDOMElement = document.querySelector('.start--btn');
+const stopBtnDOMElement = document.querySelector('.stop--btn');
+
+let autoplay;
+function startAutoplay() {
+  autoplay = setInterval(btnForward, 3000);
+}
+function stopAutoplay() {
+  clearInterval(autoplay);
+}
+
+startBtnDOMElement.addEventListener('click', startAutoplay);
+stopBtnDOMElement.addEventListener('click', stopAutoplay);

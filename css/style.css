@@ -6,6 +6,7 @@
 
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 5px;
   height: 100vh;
@@ -82,7 +83,6 @@ i {
 
 .thumb {
   width: 167px;
-  height: 104;
 }
 
 .image--container {
@@ -97,4 +97,17 @@ i {
   color: white;
   text-align: end;
   width: 700px;
+}
+
+.autoplay {
+  color: #ed4ab9;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.autoplay--buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 }
